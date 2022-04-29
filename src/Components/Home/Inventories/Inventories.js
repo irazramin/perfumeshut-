@@ -4,7 +4,7 @@ import useFetch from '../../hooks/useFetch';
 import SingleInventory from './SingleInventory';
 
 const Inventories = () => {
-    const [inventory] = useFetch();
+    const [inventory,setInventory] = useFetch();
     const navigate = useNavigate()
     const handleManageInventory = () =>{
       navigate('/inventory');
