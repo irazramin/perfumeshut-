@@ -48,18 +48,21 @@ const Header = () => {
               <div>
                 <ul className='flex ml-10 items-center justify-center'>
                   <li className='mx-5 text-lg font-normal'>
-                    <CustomLink to='/'>Home</CustomLink>
+                    <CustomLink to='/manageInventory'>Manage Item</CustomLink>
                   </li>
                   <li className='mx-5 text-lg font-normal'>
-                    <CustomLink to='/inventory'>Inventory</CustomLink>
+                    <CustomLink to='/addnewitem'>Add item</CustomLink>
                   </li>
                   <li className='mx-5 text-lg font-normal'>
-                    <CustomLink to='/blogs'>Blogs</CustomLink>
+                    <CustomLink to='/myitem'>My Item</CustomLink>
                   </li>
                 </ul>
               </div>
               <div>
-                <button onClick={logoutUser} className='bg-black mx-1 text-white px-4 py-2 hover:border-2 hover:border-black hover:bg-white hover:text-black border-2 border-black'>
+                <button
+                  onClick={logoutUser}
+                  className='bg-black mx-1 text-white px-4 py-2 hover:border-2 hover:border-black hover:bg-white hover:text-black border-2 border-black'
+                >
                   Logout
                 </button>
               </div>

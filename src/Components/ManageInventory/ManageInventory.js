@@ -1,9 +1,12 @@
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import InventoryItem from './InventoryLists/InventoryList';
-
 const ManageInventory = () => {
   const [inventory, setInventory] = useFetch();
+  const navigate = useNavigate();
    const deletePerfumeItem = (id) => {
      const url = `https://sheltered-bastion-67111.herokuapp.com/inventory/${id}`;
      fetch(url, {
@@ -17,8 +20,19 @@ const ManageInventory = () => {
          }
        });
    };
+   const navigateAddNewItem = () =>{
+      navigate('/addnewitem')
+   }
   return (
-    <div className='w-[80%] mx-auto bg-white p-5 my-10'>
+    <div className='w-[85%] mx-auto bg-white p-5 my-20 '>
+      <button
+        onClick={navigateAddNewItem}
+        type='submit'
+        className='bg-black top-14 right-24 absolute mt-5 mx-1 text-white px-4 py-2 hover:border-2 hover:border-black hover:bg-white hover:text-black border-2 border-black'
+      >
+        <FontAwesomeIcon icon={faPlus} className='mr-2' />
+        add new item
+      </button>
       <div className=''>
         <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
           <table className='w-full text-sm text-left text-gray-500 dark:text-gray-400'>
@@ -45,7 +59,15 @@ const ManageInventory = () => {
               </tr>
             </thead>
 
-            <tbody>{inventory.map((product) => <InventoryItem key={product._id} product={product} deletePerfumeItem={deletePerfumeItem} />)}</tbody>
+            <tbody>
+              {inventory.map((product) => (
+                <InventoryItem
+                  key={product._id}
+                  product={product}
+                  deletePerfumeItem={deletePerfumeItem}
+                />
+              ))}
+            </tbody>
           </table>
         </div>
       </div>
