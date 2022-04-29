@@ -8,7 +8,7 @@ import Inventoty from "./Components/Inventory/Inventoty";
 
 function App() {
   return (
-   <div className="bg-stone-50 h-screen">
+   <div className="bg-stone-50 h-full">
      <Header ></Header>
      <Routes>
        <Route path="/" element={<Home/>}></Route>
