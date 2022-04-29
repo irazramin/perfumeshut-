@@ -1,13 +1,14 @@
 import { Route, Routes } from "react-router-dom";
 import Blogs from "./Components/Blogs/Blogs";
 import ErrorRoute from "./Components/ErrorRoute/ErrorRoute";
+import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";
 import Home from "./Components/Home/Home";
 import Inventoty from "./Components/Inventory/Inventoty";
 
 function App() {
   return (
-   <div>
+   <div className="bg-stone-50 h-screen">
      <Header ></Header>
      <Routes>
        <Route path="/" element={<Home/>}></Route>
@@ -15,6 +16,7 @@ function App() {
        <Route path="/blogs" element={<Blogs/>}></Route>
        <Route path="*" element={<ErrorRoute/>}></Route>
      </Routes>
+     <Footer />
    </div>
   );
 }
