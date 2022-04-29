@@ -1,3 +1,4 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
@@ -6,6 +7,7 @@ import CustomLink from '../CustomLink/CustomLink';
 const Header = () => {
   const navigate = useNavigate();
  const [user] = useAuthState(auth);
+ console.log(user)
  const handleLogin = () =>{
    navigate('/login')
  }
@@ -13,6 +15,12 @@ const Header = () => {
       navigate('/registration');
 
  }
+
+ const logoutUser = () =>{
+   signOut(auth);
+ }
+
+ 
   return (
     <nav className='h-[60px] mb-auto bg-white  flex items-center'>
       <div className='w-[85%] mx-auto flex justify-between items-center'>
@@ -51,7 +59,7 @@ const Header = () => {
                 </ul>
               </div>
               <div>
-                <button className='bg-black mx-1 text-white px-4 py-2 hover:border-2 hover:border-black hover:bg-white hover:text-black border-2 border-black'>
+                <button onClick={logoutUser} className='bg-black mx-1 text-white px-4 py-2 hover:border-2 hover:border-black hover:bg-white hover:text-black border-2 border-black'>
                   Logout
                 </button>
               </div>

@@ -2,7 +2,6 @@ import React from 'react';
 
 const SingleInventory = ({product}) => {
   const { perfumsName, supplier, quantity, price, description, img } = product;
-  console.log(supplier);
   return (
     <div className=''>
       <div className='grid grid-cols-2 gap-3  p-3 shadow-md'>
