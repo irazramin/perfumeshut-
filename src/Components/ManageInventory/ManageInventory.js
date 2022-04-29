@@ -3,7 +3,7 @@ import useFetch from '../hooks/useFetch';
 import InventoryItem from './InventoryLists/InventoryList';
 
 const ManageInventory = () => {
-  const [inventory] = useFetch();
+  const [inventory, setInventory] = useFetch();
   return (
     <div className='w-[80%] mx-auto bg-white p-5 my-10'>
       <div className=''>

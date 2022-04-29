@@ -20,7 +20,7 @@ const Header = () => {
    signOut(auth);
  }
 
- 
+
   return (
     <nav className='h-[60px] mb-auto bg-white  flex items-center'>
       <div className='w-[85%] mx-auto flex justify-between items-center'>
@@ -34,10 +34,10 @@ const Header = () => {
                 <CustomLink to='/'>Home</CustomLink>
               </li>
               <li className='mx-5 text-lg font-normal'>
-                <CustomLink to='/inventory'>Inventory</CustomLink>
+                <CustomLink to='/blogs'>Blogs</CustomLink>
               </li>
               <li className='mx-5 text-lg font-normal'>
-                <CustomLink to='/blogs'>Blogs</CustomLink>
+                <CustomLink to='/contactus'>Contact Us</CustomLink>
               </li>
             </ul>
           </div>

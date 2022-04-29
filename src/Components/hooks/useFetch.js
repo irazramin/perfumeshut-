@@ -9,7 +9,7 @@ const useFetch = () => {
           .then((data) => setInventory(data));
     },[])
 
-    return [inventory];
+    return [inventory,setInventory];
 }
 
 export default useFetch
