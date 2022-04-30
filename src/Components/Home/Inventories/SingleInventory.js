@@ -4,9 +4,9 @@ const SingleInventory = ({product}) => {
   const { perfumsName, supplier, quantity, price, description, img } = product;
   return (
     <div className=''>
-      <div className='grid grid-cols-2 gap-3  p-3 shadow-md'>
+      <div className='grid lg:grid-cols-2 gap-3  p-3 shadow-md'>
         <div>
-          <img className='w-full h-full object-cover ' src={img} alt='' />
+          <img className='w-full h-[200px] object-cover ' src={img} alt='' />
         </div>
         <div className=''>
           <h4 className='text-[22px] font-medium'>{perfumsName}</h4>

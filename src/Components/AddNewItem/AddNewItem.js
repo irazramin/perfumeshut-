@@ -1,111 +1,155 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 const AddNewItem = () => {
-  return (
-    <div className='w-[85%] mx-auto bg-white p-5 my-20'>
-      <form className='w-6/12 mx-auto'>
-        <div className='grid grid-cols-2 gap-10'>
-          <div className='mb-6'>
-            <label
-              for='email'
-              className='block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'
-            >
-              Perfume name
-            </label>
-            <input
-              type='email'
-              id='email'
-              className='shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:border-black dark:shadow-sm-light'
-              placeholder='Perfume name'
-              required=''
-            />
-          </div>
-          <div className='mb-6'>
-            <label
-              for='password'
-              className='block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'
-            >
-              Perfume image
-            </label>
-            <input
-              type='text'
-              id='password'
-              className='shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:border-black dark:shadow-sm-light'
-              required=''
-              placeholder='Enter image url'
-            />
-          </div>
-        </div>
-        <div className='mb-6'>
-          <label
-            for='message'
-            class='block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400'
-          >
-            Enter perfumes details
-          </label>
-          <textarea
-            id='message'
-            rows='4'
-            class='block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-            placeholder='Descriptions'
-          ></textarea>
-        </div>
+  const [user] = useAuthState(auth);
+  const handleAddItem = (e) =>{
+      e.preventDefault();
+      const perfumsName = e.target.perfumsName.value; 
+      const img = e.target.img.value; 
+      const description = e.target.description.value; 
+      const supplier = e.target.supplier.value; 
+      const quantity = e.target.quantity.value; 
+      const price = e.target.price.value; 
 
-        <div className='grid grid-cols-3 gap-5'>
-          <div className='mb-6'>
-            <label
-              for='password'
-              className='block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'
-            >
-              Supplier name
-            </label>
-            <input
-              type='text'
-              id='password'
-              className='shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:border-black dark:shadow-sm-light'
-              required=''
-              placeholder='Supplier name'
-            />
+      const item = {
+        perfumsName,
+        img,
+        description,
+        supplier,
+        quantity,
+        price,
+        email:user?.email,
+      }
+
+      fetch(`https://sheltered-bastion-67111.herokuapp.com/additem`,{
+        method:'POST',
+        headers:{
+          "content-type" : "application/json"
+        },
+        body:JSON.stringify(item)
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+      })
+      console.log(item)
+
+      e.target.reset();
+  }
+  return (
+    <div className=' pt-10 pb-20 transition-all duration-500 ease-linear '>
+      <div className='w-[90%] lg:w-[50%] mx-auto bg-white py-4 md:p-5 lg:p-10'>
+        <h4 className='mb-5 text-2xl text-center font-semibold'>
+          Please add a new perfumes
+        </h4>
+        <form onSubmit={handleAddItem} className='w-[90%] mx-auto '>
+          <div className='grid grid-cols-1 lg:grid-cols-2 lg:gap-10'>
+            <div className='mb-3'>
+              <label
+                htmlFor='email'
+                className='block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'
+              >
+                Perfume name
+              </label>
+              <input
+                type='text'
+                id='email'
+                className='shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-black focus:border-black block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:border-black dark:shadow-sm-light'
+                placeholder='Perfume name'
+                required
+                name='perfumsName'
+              />
+            </div>
+            <div className='mb-3'>
+              <label
+                htmlFor='img'
+                className='block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'
+              >
+                Perfume image
+              </label>
+              <input
+                type='text'
+                id='img'
+                className='shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-black focus:border-black block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:border-black dark:shadow-sm-light'
+                required
+                placeholder='Enter image url'
+                name='img'
+              />
+            </div>
           </div>
-          <div className='mb-6'>
+          <div className='mb-3'>
             <label
-              for='password'
-              className='block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'
+              htmlFor='message'
+              className='block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400'
             >
-              Perfume price
+              Enter perfumes details
             </label>
-            <input
-              type='number'
-              id='password'
-              className='shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:border-black dark:shadow-sm-light'
-              required=''
-              placeholder='Enter price'
-            />
+            <textarea
+              name='description'
+              id='message'
+              rows='4'
+              className='block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+              placeholder='Descriptions'
+            ></textarea>
           </div>
-          <div className='mb-6'>
-            <label
-              for='password'
-              className='block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'
-            >
-              Perfume quantity
-            </label>
-            <input
-              type='number'
-              id='password'
-              className='shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:border-black dark:shadow-sm-light'
-              required=''
-              placeholder='Enter quantity'
-            value='0'
-            />
+
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-3 lg:gap-5'>
+            <div className='mb-3'>
+              <label
+                htmlFor='password'
+                className='block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'
+              >
+                Supplier name
+              </label>
+              <input
+                type='text'
+                id='password'
+                className='shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-black focus:border-black block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:border-black dark:shadow-sm-light'
+                required
+                placeholder='Supplier name'
+                name='supplier'
+              />
+            </div>
+            <div className='mb-3'>
+              <label
+                htmlFor='password'
+                className='block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'
+              >
+                Perfume price
+              </label>
+              <input
+                type='number'
+                id='password'
+                className='shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-black focus:border-black block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:border-black dark:shadow-sm-light'
+                required
+                placeholder='Enter price'
+                name='price'
+              />
+            </div>
+            <div className='mb-3'>
+              <label
+                htmlFor='password'
+                className='block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'
+              >
+                Perfume quantity
+              </label>
+              <input
+                type='number'
+                id='password'
+                className='shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-black focus:border-black block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:border-black dark:shadow-sm-light'
+                required
+                placeholder='Enter quantity'
+                name='quantity'
+              />
+            </div>
           </div>
-        </div>
-        <button
-          type='submit'
-          className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
-        >
-          Register new account
-        </button>
-      </form>
+          <button className='bg-black mx-1 mt-7 text-white px-4 py-2 hover:border-2 hover:border-black hover:bg-white hover:text-black border-2 border-black'>
+            Add item
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
