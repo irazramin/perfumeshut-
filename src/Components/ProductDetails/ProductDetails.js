@@ -2,34 +2,50 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 const ProductDetails = () => {
- const [singleItem,setSingleItem] = useState({});
- const { inventoryId } = useParams();
- const [deliveryItem,setDeliveryItem] = useState(0);
+  const [singleItem, setSingleItem] = useState({});
+  const { inventoryId } = useParams();
+  const [deliveryItem, setDeliveryItem] = useState(0);
   const url = `https://sheltered-bastion-67111.herokuapp.com/inventory/${inventoryId}`;
-  useEffect(() =>{
+  useEffect(() => {
     fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      setSingleItem(data[0]);
-      setDeliveryItem(data[0].quantity);
-    })
-  },[url]);
-
-  const deliverProduct = () => {
-    if(deliveryItem > 0){
-      setDeliveryItem(deliveryItem - 1);
+      .then((res) => res.json())
+      .then((data) => {
+        setSingleItem(data[0]);
+          setDeliveryItem(data[0].quantity);
+      });
+  }, [url]);
+   const delivered = {
+     perfumsName: singleItem.perfumsName,
+     img: singleItem.img,
+     description: singleItem.description,
+     supplier: singleItem.supplier,
+     quantity: singleItem.quantity,
+     price: singleItem.price,
+   };
+  const deliverProduct =  () => {
+    if (singleItem.quantity > 0) {
+      //  delivered.quantity = deliveryItem
+      singleItem.quantity = singleItem.quantity - 1;
+      setDeliveryItem(singleItem.quantity);
     }
+   
        fetch(url, {
          method: 'PUT',
          headers: {
            'content-type': 'application/json',
          },
-         body: JSON.stringify(singleItem),
+         body: JSON.stringify({
+           quantity: singleItem.quantity,
+         }),
        })
-       .then(res => res.json())
-       .then(data => console.log(data))
+         .then((res) => res.json())
+         .then((data) => {
+           console.log(data);
+         });
+      
+
   };
-  singleItem.quantity = deliveryItem;
+
   return (
     <div className='w-[80%]  mx-auto my-20  pb-10'>
       <div className='grid grid-cols-2 gap-5 bg-white p-5'>
@@ -46,16 +62,15 @@ const ProductDetails = () => {
             {singleItem.supplier}
           </h5>
           <p className='mt-4'>{singleItem.description}</p>
-          <p className='mt-6 text-4xl font-semibold'>
-            ${singleItem.price}
-          </p>
+          <p className='mt-6 text-4xl font-semibold'>${singleItem.price}</p>
           <div className='mt-10 flex items-center '>
             <div className=' px-5 py-2 border-[2px]'>
-              <span>Total product : {singleItem.quantity}</span>
+              <span>Total product : {deliveryItem}</span>
             </div>
             <div className='ml-10'>
               <button
                 onClick={deliverProduct}
+                
                 className='bg-black w-full  text-white px-4 py-2 hover:border-2 hover:border-black hover:bg-white hover:text-black border-2 border-black'
               >
                 Deliver
