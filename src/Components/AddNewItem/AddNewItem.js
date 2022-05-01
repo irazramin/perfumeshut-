@@ -10,8 +10,8 @@ const AddNewItem = () => {
       const img = e.target.img.value; 
       const description = e.target.description.value; 
       const supplier = e.target.supplier.value; 
-      const quantity = e.target.quantity.value; 
-      const price = e.target.price.value; 
+      const quantity = parseInt(e.target.quantity.value); 
+      const price = parseInt(e.target.price.value); 
 
       const item = {
         perfumsName,

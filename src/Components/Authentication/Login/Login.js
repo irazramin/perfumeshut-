@@ -18,10 +18,7 @@ const Login = () => {
   const [signInWithGoogle, user2, loading1, error1] =
     useSignInWithGoogle(auth);
 
-
-    
   const [currentUser] = useAuthState(auth);
-
   const location = useLocation();
 
   const from = location.state?.from?.pathname || '/';

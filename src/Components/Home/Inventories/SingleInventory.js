@@ -1,7 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const SingleInventory = ({product}) => {
-  const { perfumsName, supplier, quantity, price, description, img } = product;
+  const {_id, perfumsName, supplier, quantity, price, description, img } = product;
+  const navigate = useNavigate();
+  const navigateProductDetails = (id) =>{
+      navigate(`/inventory/${id}`);
+  }
   return (
     <div className=''>
       <div className='grid lg:grid-cols-2 gap-3  p-3 shadow-md'>
@@ -22,7 +27,7 @@ const SingleInventory = ({product}) => {
               <h5 className='font-medium'>Supplier : {supplier}</h5>
             </div>
             <div className='text-right mt-4'>
-              <button className='bg-black text-white px-4 py-2 hover:border-2 hover:border-black hover:bg-white hover:text-black border-2 border-black'>
+              <button onClick={() => navigateProductDetails(_id)} className='bg-black text-white px-4 py-2 hover:border-2 hover:border-black hover:bg-white hover:text-black border-2 border-black'>
                 Stoke Update
               </button>
             </div>
