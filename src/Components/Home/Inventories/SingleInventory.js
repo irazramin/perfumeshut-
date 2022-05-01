@@ -28,7 +28,7 @@ const SingleInventory = ({product}) => {
             </div>
             <div className='text-right mt-4'>
               <button onClick={() => navigateProductDetails(_id)} className='bg-black text-white px-4 py-2 hover:border-2 hover:border-black hover:bg-white hover:text-black border-2 border-black'>
-                Stoke Update
+                Stock Update
               </button>
             </div>
           </div>
