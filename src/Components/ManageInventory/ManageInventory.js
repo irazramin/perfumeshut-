@@ -24,7 +24,7 @@ const ManageInventory = () => {
       navigate('/addnewitem')
    }
   return (
-    <div className='relative  w-[90%] lg:w-[85%] mx-auto'>
+    <div className='relative  w-[90%] lg:w-[85%] mx-auto pb-20 bg-stone-50'>
       <div className='text-right'>
         <button
           onClick={navigateAddNewItem}
@@ -35,7 +35,7 @@ const ManageInventory = () => {
           add new item
         </button>
       </div>
-      <div className='bg-white p-5 my-20'>
+      <div className='bg-white p-5 mt-20'>
         <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
           <table className='w-full text-sm text-left text-gray-500 dark:text-gray-400'>
             <thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>

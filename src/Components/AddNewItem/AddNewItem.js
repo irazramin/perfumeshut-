@@ -39,7 +39,7 @@ const AddNewItem = () => {
       e.target.reset();
   }
   return (
-    <div className=' pt-10 pb-20 transition-all duration-500 ease-linear '>
+    <div className=' pt-10 pb-20 bg-stone-50 transition-all duration-500 ease-linear '>
       <div className='w-[90%] lg:w-[50%] mx-auto bg-white py-4 md:p-5 lg:p-10'>
         <h4 className='mb-5 text-2xl text-center font-semibold'>
           Please add a new perfumes
