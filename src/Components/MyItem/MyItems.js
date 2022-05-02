@@ -16,17 +16,17 @@ const MyItems = () => {
   }, [email]);
 
    const deletePerfumeItem = (id) => {
-    //  const url = `https://sheltered-bastion-67111.herokuapp.com/inventory/${id}`;
-    //  fetch(url, {
-    //    method: 'DELETE',
-    //  })
-    //    .then((res) => res.json())
-    //    .then((data) => {
-    //      if (data.deletedCount > 0) {
-    //        const afterDelete = myItem.filter((user) => user._id !== id);
-    //        setMyItem(afterDelete);
-    //      }
-    //    });
+     const url = `https://sheltered-bastion-67111.herokuapp.com/inventory/${id}`;
+     fetch(url, {
+       method: 'DELETE',
+     })
+       .then((res) => res.json())
+       .then((data) => {
+         if (data.deletedCount > 0) {
+           const afterDelete = myItem.filter((user) => user._id !== id);
+           setMyItem(afterDelete);
+         }
+       });
     console.log(id)
    };
 

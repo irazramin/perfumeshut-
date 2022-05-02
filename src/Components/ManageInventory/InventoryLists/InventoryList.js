@@ -20,13 +20,13 @@ const InventoryItem = ({ product, deletePerfumeItem }) => {
       <td className='px-6 py-4 items-center justify-between flex'>
         <div
           onClick={navigateProductDetails}
-          className='w-8 h-8 hover:bg-blue-800 bg-blue-600 flex justify-center items-center rounded-full cursor-pointer active:scale-105'
+          className='w-8 h-8 mr-2 hover:bg-blue-800 bg-blue-600 flex justify-center items-center rounded-full cursor-pointer active:scale-105'
         >
           <FontAwesomeIcon className='text-white text-base' icon={faEdit} />
         </div>
         <div
           onClick={() => deletePerfumeItem(_id)}
-          className='w-8 h-8 hover:bg-red-800 bg-red-600 flex justify-center items-center rounded-full cursor-pointer active:scale-105'
+          className='w-8 h-8 mr-2 hover:bg-red-800 bg-red-600 flex justify-center items-center rounded-full cursor-pointer active:scale-105'
         >
           <FontAwesomeIcon className='text-white text-base' icon={faTrashAlt} />
         </div>

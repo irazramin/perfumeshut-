@@ -1,22 +1,27 @@
 import { faEnvelope, faKey } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
-import { useAuthState, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import {
+  useAuthState,
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle
+} from 'react-firebase-hooks/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import auth from '../../../firebase.init';
 import googleIcon from '../../../img/google.png';
 import loginBg from '../../../img/login.svg';
+import { sendPasswordResetEmail } from 'firebase/auth';
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [modalActive, setModalActive] = useState(false);
 
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-  const [signInWithGoogle, user2, loading1, error1] =
-    useSignInWithGoogle(auth);
+  const [signInWithGoogle, user2, loading1, error1] = useSignInWithGoogle(auth);
 
   const [currentUser] = useAuthState(auth);
   const location = useLocation();
@@ -35,7 +40,6 @@ const Login = () => {
   };
   const handlePasswordInput = (e) => {
     setPassword(e.target.value);
-   
   };
   const loginWithGoogle = () => {
     signInWithGoogle();
@@ -45,7 +49,7 @@ const Login = () => {
     signInWithEmailAndPassword(email, password);
   };
 
-  if(loading || loading1){
+  if (loading || loading1) {
     toast.success('Login Successful', {
       position: 'top-right',
       autoClose: 5000,
@@ -55,6 +59,19 @@ const Login = () => {
       draggable: true,
       progress: undefined,
     });
+  }
+
+  const sendResetPass = () =>{
+    setModalActive(true)
+  }
+  const resetPassword = (e) =>{
+      e.preventDefault()
+      const email = (e.target.email.value);
+      if(email){
+        sendPasswordResetEmail(auth,email)
+        setModalActive(false);
+        toast("Check your email for reset password")
+      }
   }
   return (
     <div className='pb-10'>
@@ -126,7 +143,7 @@ const Login = () => {
                     </label>
                   </div>
                   <div>
-                    <button type='button' className='text-sm font-medium'>
+                    <button onClick={sendResetPass} type='button' className='text-sm font-medium'>
                       Forget password?
                     </button>
                   </div>
@@ -176,6 +193,55 @@ const Login = () => {
               </div>
             </div>
           </form>
+          {/* modal */}
+
+          <div
+            id='authentication-modal'
+            aria-hidden='true'
+            className={`${
+              modalActive ? 'block' : 'hidden'
+            }  mx-auto flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center`}
+          >
+            <div className='relative p-4 w-full max-w-md h-full md:h-auto'>
+              <div className='relative bg-white rounded-lg shadow dark:bg-gray-700'>
+                <div className='py-6 px-6 lg:px-8'>
+                  <h3 className='mb-4 text-xl font-medium text-gray-900 dark:text-white'>
+                    Enter email for reset password
+                  </h3>
+                  <form className='space-y-6' onSubmit={resetPassword}>
+                    <div>
+                      <label
+                        htmlFor='input-group-1'
+                        className='block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'
+                      >
+                        Your Email
+                      </label>
+
+                      <div className='relative mb-6'>
+                        <div className='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>
+                          <FontAwesomeIcon icon={faEnvelope} />
+                        </div>
+                        <input
+                          onBlur={handleEmailInput}
+                          type='text'
+                          id='input-group-1'
+                          name='email'
+                          className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-black focus:border-black block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:border-black'
+                          placeholder='your email'
+                        />
+                      </div>
+                    </div>
+                    <button
+                      type='submit'
+                      className='bg-black w-full mt-5 mx-1 text-white px-4 py-2 hover:border-2 hover:border-black hover:bg-white hover:text-black border-2 border-black'
+                    >
+                      Password reset
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <ToastContainer />
