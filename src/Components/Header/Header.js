@@ -30,13 +30,13 @@ const Header = () => {
           </div>
           <div className={`${active ? 'hidden' : 'block'} lg:block`}>
             <ul className='lg:flex mt-5 lg:mt-0 lg:ml-10 items-center justify-center'>
-              <li className='lg:mx-5 text-lg mb-2 lg:mb-0 font-normal'>
+              <li className='lg:mx-5 hover:bg-black hover:text-white hover:rounded text-base mb-2 lg:mb-0 font-medium'>
                 <CustomLink to='/'>Home</CustomLink>
               </li>
-              <li className='lg:mx-5 text-lg mb-2 lg:mb-0 font-normal'>
+              <li className='lg:mx-5 hover:bg-black hover:text-white hover:rounded text-base mb-2 lg:mb-0 font-medium'>
                 <CustomLink to='/blogs'>Blogs</CustomLink>
               </li>
-              <li className='lg:mx-5 text-lg mb-2 lg:mb-0 font-normal'>
+              <li className='lg:mx-5 hover:bg-black hover:text-white hover:rounded text-base mb-2 lg:mb-0 font-medium'>
                 <CustomLink to='/contactus'>Contact Us</CustomLink>
               </li>
             </ul>
@@ -47,13 +47,13 @@ const Header = () => {
             <div className='lg:flex items-center justify-center'>
               <div>
                 <ul className='lg:flex   lg:ml-10 items-center lg:justify-center'>
-                  <li className='lg:mx-5 text-lg mb-2 lg:mb-0 font-normal'>
+                  <li className='lg:mx-5 hover:bg-black hover:text-white hover:rounded text-base mb-2 lg:mb-0 font-medium'>
                     <CustomLink to='/manageInventory'>Manage Item</CustomLink>
                   </li>
-                  <li className='lg:mx-5 text-lg mb-2 lg:mb-0 font-normal'>
+                  <li className='lg:mx-5 hover:bg-black hover:text-white hover:rounded text-base mb-2 lg:mb-0 font-medium'>
                     <CustomLink to='/addnewitem'>Add item</CustomLink>
                   </li>
-                  <li className='lg:mx-5 text-lg mb-2 lg:mb-0 font-normal'>
+                  <li className='lg:mx-5 hover:bg-black hover:text-white hover:rounded text-base mb-2 lg:mb-0 font-medium'>
                     <CustomLink to='/myitem'>My Item</CustomLink>
                   </li>
                 </ul>

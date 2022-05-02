@@ -24,16 +24,18 @@ const ManageInventory = () => {
       navigate('/addnewitem')
    }
   return (
-    <div className='w-[85%] mx-auto bg-white p-5 my-20 '>
-      <button
-        onClick={navigateAddNewItem}
-        type='submit'
-        className='bg-black top-14 right-24 absolute mt-5 mx-1 text-white px-4 py-2 hover:border-2 hover:border-black hover:bg-white hover:text-black border-2 border-black'
-      >
-        <FontAwesomeIcon icon={faPlus} className='mr-2' />
-        add new item
-      </button>
-      <div className=''>
+    <div className='relative  w-[90%] lg:w-[85%] mx-auto'>
+      <div className='text-right'>
+        <button
+          onClick={navigateAddNewItem}
+          type='submit'
+          className='bg-black top-10 right-0 relative  mx-1 text-white px-4 py-2 hover:border-2 hover:border-black hover:bg-white hover:text-black border-2 border-black'
+        >
+          <FontAwesomeIcon icon={faPlus} className='mr-2' />
+          add new item
+        </button>
+      </div>
+      <div className='bg-white p-5 my-20'>
         <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
           <table className='w-full text-sm text-left text-gray-500 dark:text-gray-400'>
             <thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>

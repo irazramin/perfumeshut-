@@ -1,4 +1,4 @@
-import { Link, useMatch, useResolvedPath } from "react-router-dom";
+import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 
 function CustomLink({ children, to, ...props }) {
   let resolved = useResolvedPath(to);
@@ -7,7 +7,7 @@ function CustomLink({ children, to, ...props }) {
   return (
     <div>
       <Link
-        style={{ textDecoration: match ? 'underline' : 'none' }}
+        className={`${match ? 'bg-black text-white' : ''} px-2 py-[4px] rounded`}
         to={to}
         {...props}
       >
@@ -16,4 +16,4 @@ function CustomLink({ children, to, ...props }) {
     </div>
   );
 }
-export default CustomLink
+export default CustomLink;

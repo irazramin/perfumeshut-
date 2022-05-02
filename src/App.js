@@ -3,6 +3,7 @@ import AddNewItem from './Components/AddNewItem/AddNewItem';
 import Login from './Components/Authentication/Login/Login';
 import Registration from './Components/Authentication/Registration/Registration';
 import Blogs from './Components/Blogs/Blogs';
+import Contactus from './Components/Contactus/Contactus';
 import ErrorRoute from './Components/ErrorRoute/ErrorRoute';
 import Footer from './Components/Footer/Footer';
 import Header from './Components/Header/Header';
@@ -35,6 +36,7 @@ function App() {
           }
         ></Route>
         <Route path='/blogs' element={<Blogs />}></Route>
+        <Route path='/contactus' element={<Contactus />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/registration' element={<Registration />}></Route>
         <Route
