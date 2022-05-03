@@ -12,6 +12,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import auth from '../../../firebase.init';
 import googleIcon from '../../../img/google.png';
+import loader from '../../../img/loader.svg';
 import loginBg from '../../../img/signup.svg';
 
 const Registration = () => {
@@ -153,14 +154,24 @@ const Registration = () => {
               </div>
             </div>
 
-            <div>
+            <div className='relative'>
               <p className='text-red-500'>
                 {error?.message || error1?.message || error2?.message}
               </p>
+
+              {loading ? (
+                <img
+                  className={`absolute w-10 -top-2 left-[50%]`}
+                  src={loader}
+                  alt=''
+                />
+              ) : (
+                ''
+              )}
             </div>
             <button
               type='submit'
-              className='bg-black w-full mt-5 mx-1 text-white px-4 py-2 hover:border-2 hover:border-black hover:bg-white hover:text-black border-2 border-black'
+              className='bg-black w-full mt-10 mx-1 text-white px-4 py-2 hover:border-2 hover:border-black hover:bg-white hover:text-black border-2 border-black'
             >
               Registration
             </button>

@@ -12,6 +12,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import auth from '../../../firebase.init';
 import googleIcon from '../../../img/google.png';
+import loader from '../../../img/loader.svg';
 import loginBg from '../../../img/login.svg';
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -77,12 +78,12 @@ const Login = () => {
     <div className='pb-10'>
       <div className='w-[80%] mx-auto   my-10 '>
         <div className='bg-white'>
-          <form onSubmit={loginUser}>
+          <form className='relative' onSubmit={loginUser}>
             <h4 className='pt-5 text-2xl font-medium block text-center'>
               Welcome to Perfumes Hut
             </h4>
             <div className='grid grid-cols-2 '>
-              <div className='p-10 '>
+              <div className='p-10 relative'>
                 <div>
                   <label
                     htmlFor='input-group-1'
@@ -143,7 +144,11 @@ const Login = () => {
                     </label>
                   </div>
                   <div>
-                    <button onClick={sendResetPass} type='button' className='text-sm font-medium'>
+                    <button
+                      onClick={sendResetPass}
+                      type='button'
+                      className='text-sm font-medium'
+                    >
                       Forget password?
                     </button>
                   </div>
@@ -153,6 +158,16 @@ const Login = () => {
                   <p className='text-red-500'>
                     {error?.message || error1?.message}
                   </p>
+                 {
+                   loading ? 
+                    <img
+                    className={`absolute w-10 top-[230px] left-[50%]`}
+                    src={loader}
+                    alt=''
+                  />
+                  :
+                  ""
+                 }
                 </div>
                 <button
                   type='submit'
