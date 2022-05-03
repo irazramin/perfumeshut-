@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import './App.css';
 import AddNewItem from './Components/AddNewItem/AddNewItem';
 import Login from './Components/Authentication/Login/Login';
 import Registration from './Components/Authentication/Registration/Registration';
@@ -15,7 +16,7 @@ import RequireRoute from './Components/RequireRoute/RequireRoute';
 
 function App() {
   return (
-    <div className='bg-stone-50 h-full'>
+    <div className='bg-stone-50 h-full App-header'>
       <Header></Header>
       <Routes>
         <Route path='/' element={<Home />}></Route>

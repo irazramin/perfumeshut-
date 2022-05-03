@@ -13,7 +13,7 @@ const navigateProductDetails = (id) => {
 
 
 return (
-  <div className='relative h-screen bg-white'>
+  <div className='relative  bg-white'>
     <div className='grid lg:grid-cols-2 gap-3 bg-white  p-3 shadow-md'>
       <div>
         <img className='w-full h-[200px] object-cover ' src={img} alt='' />

@@ -31,7 +31,7 @@ const MyItems = () => {
    };
 
   return (
-    <div className={`pb-20 bg-stone-50`}>
+    <div className={`pb-20 `}>
       <div className=' w-[90%] lg:w-[80%] mx-auto mt-20'>
         {myItem.length > 0 ? (
           <div className={`px-3 p-5  md:p-5 bg-white`}>
@@ -44,17 +44,9 @@ const MyItems = () => {
               ))}
             
             </div>
-            {/* <div className='text-center mt-10 '>
-            <button
-              // onClick={handleManageInventory}
-              className='bg-black text-white px-4 py-2 hover:border-2 hover:border-black hover:bg-white hover:text-black border-2 border-black'
-            >
-              Manage Inventory
-            </button>
-          </div> */}
           </div>
         ) : (
-          <div className='flex justify-center lg:mt-40  bg-stone-50 h-fit lg:pb-56'>
+          <div className='flex justify-center lg:mt-40  bg-stone-50  lg:pb-56'>
             <h2 className='text-3xl'>NO ITEMS IN YOUR INVENTORY</h2>
           </div>
         )}

@@ -1,5 +1,6 @@
 import { faEnvelope, faKey } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { sendPasswordResetEmail } from 'firebase/auth';
 import React, { useState } from 'react';
 import {
   useAuthState,
@@ -12,7 +13,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import auth from '../../../firebase.init';
 import googleIcon from '../../../img/google.png';
 import loginBg from '../../../img/login.svg';
-import { sendPasswordResetEmail } from 'firebase/auth';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -49,17 +49,17 @@ const Login = () => {
     signInWithEmailAndPassword(email, password);
   };
 
-  if (loading || loading1) {
-    toast.success('Login Successful', {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  }
+  // if (loading ) {
+  //   toast.success('Login Successful', {
+  //     position: 'top-right',
+  //     autoClose: 5000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //   });
+  // }
 
   const sendResetPass = () =>{
     setModalActive(true)
