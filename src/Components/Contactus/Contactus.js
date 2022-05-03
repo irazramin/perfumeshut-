@@ -5,14 +5,14 @@ import contactus from '../../img/contactus.gif';
 const Contactus = () => {
   return (
     <div className='pb-10'>
-      <div className='w-[80%] mx-auto   my-10 '>
+      <div className='lg:w-[80%] w-[90%] mx-auto   my-10 '>
         <div className='bg-white'>
           <form>
             <h4 className='pt-5 text-2xl font-medium block text-center'>
               Contact us
             </h4>
-            <div className='grid grid-cols-2 '>
-              <div className='p-10 '>
+            <div className='grid lg:grid-cols-2 grid-cols-1 '>
+              <div className='lg:p-10 p-5 lg:order-1 order-2 '>
                 <div>
                   <label
                     htmlFor='input-group-1'
@@ -78,7 +78,7 @@ const Contactus = () => {
                   Send
                 </button>
               </div>
-              <div>
+              <div className='order-1 lg:order-2 '>
                 <img src={contactus} alt='' />
               </div>
             </div>

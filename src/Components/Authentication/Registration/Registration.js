@@ -24,7 +24,7 @@ const Registration = () => {
   const [currentUser] = useAuthState(auth);
   const [sendEmailVerification, sending, error2] =
     useSendEmailVerification(auth);
-  const [showToast,setShowToast] = useState(false)
+  // const [showToast,setShowToast] = useState(false)
   if (currentUser) {
     navigate('/');
   }
@@ -44,9 +44,8 @@ const Registration = () => {
     e.preventDefault();
     createUserWithEmailAndPassword(email, password).then(() => {
       verifyRegisterUser();
-      setShowToast(true)
+      toast.success('send verification code to your email')
     });
-    toast.success('send verification code to your email')
   };
   
  
@@ -123,7 +122,7 @@ const Registration = () => {
                   <FontAwesomeIcon icon={faKey} />
                 </div>
                 <input
-                  type='text'
+                  type='password'
                   onBlur={handlePasswordInput}
                   id='input-group-1'
                   className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-black focus:border-black block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:border-black'
@@ -145,7 +144,7 @@ const Registration = () => {
                   <FontAwesomeIcon icon={faKey} />
                 </div>
                 <input
-                  type='text'
+                  type='password'
                   id='input-group-1'
                   className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-black focus:border-black block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:border-black'
                   placeholder='confirm password'

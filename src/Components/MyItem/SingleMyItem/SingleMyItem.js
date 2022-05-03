@@ -13,13 +13,13 @@ const navigateProductDetails = (id) => {
 
 
 return (
-  <div className='relative'>
-    <div className='grid lg:grid-cols-2 gap-3  p-3 shadow-md'>
+  <div className='relative h-screen bg-white'>
+    <div className='grid lg:grid-cols-2 gap-3 bg-white  p-3 shadow-md'>
       <div>
         <img className='w-full h-[200px] object-cover ' src={img} alt='' />
       </div>
       <div className=''>
-        <h4 className='text-[22px] font-medium'>
+        <h4 className='text-[22px] mt-5 font-medium'>
           {perfumsName.length > 15
             ? perfumsName.slice(0, 20) + '....'
             : perfumsName}
@@ -46,7 +46,7 @@ return (
         </div>
         <div
           onClick={() => deletePerfumeItem(_id)}
-          className='w-8 h-8 hover:bg-red-800 bg-red-600 flex justify-center items-center rounded-full cursor-pointer active:scale-105 absolute top-4 right-4'
+          className='w-8 h-8 hover:bg-red-800 bg-red-600 flex justify-center items-center rounded-full cursor-pointer active:scale-105 absolute top-2 right-3'
         >
           <FontAwesomeIcon className='text-white text-base' icon={faTrashAlt} />
         </div>

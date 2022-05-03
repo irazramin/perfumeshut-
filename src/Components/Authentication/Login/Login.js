@@ -14,10 +14,10 @@ import googleIcon from '../../../img/google.png';
 import loginBg from '../../../img/login.svg';
 import { sendPasswordResetEmail } from 'firebase/auth';
 const Login = () => {
-  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [modalActive, setModalActive] = useState(false);
+  const navigate = useNavigate();
 
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
@@ -70,7 +70,7 @@ const Login = () => {
       if(email){
         sendPasswordResetEmail(auth,email)
         setModalActive(false);
-        toast("Check your email for reset password")
+        toast.success("Check your email for reset password")
       }
   }
   return (
@@ -118,7 +118,7 @@ const Login = () => {
                     </div>
                     <input
                       onBlur={handlePasswordInput}
-                      type='text'
+                      type='password'
                       id='input-group-1'
                       className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-black focus:border-black block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:border-black'
                       placeholder='your password'
