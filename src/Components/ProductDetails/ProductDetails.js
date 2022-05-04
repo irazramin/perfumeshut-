@@ -46,7 +46,9 @@ const ProductDetails = () => {
     setDeliveryItem(parseInt(restockInput) + parseInt(singleItem.quantity));
     singleItem.quantity =
       parseInt(restockInput) + parseInt(singleItem.quantity);
-    const restockItem = parseInt(restockInput) + parseInt(singleItem.quantity);
+    const restockItem = singleItem.quantity;
+    console.log(restockItem)
+    console.log(deliveryItem)
        fetch(url, {
          method: 'PUT',
          headers: {

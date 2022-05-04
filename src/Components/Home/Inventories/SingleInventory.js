@@ -14,7 +14,7 @@ const SingleInventory = ({product}) => {
           <img className='w-full h-[200px] object-cover ' src={img} alt='' />
         </div>
         <div className=''>
-          <h4 className='text-[22px] font-medium'>
+          <h4 className='text-[22px] font-medium '>
             {perfumsName.length > 15
               ? perfumsName.slice(0, 20) + '....'
               : perfumsName}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { toast, ToastContainer } from 'react-toastify';
 import auth from '../../firebase.init';
 
 const AddNewItem = () => {
@@ -23,17 +24,19 @@ const AddNewItem = () => {
         email:user?.email,
       }
 
-      fetch(`https://sheltered-bastion-67111.herokuapp.com/additem`,{
-        method:'POST',
-        headers:{
-          "content-type" : "application/json"
+      fetch(`https://sheltered-bastion-67111.herokuapp.com/additem`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-        body:JSON.stringify(item)
+        body: JSON.stringify(item),
       })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data)
-      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.acknowledged === true) {
+            toast.success('Product add successfully');
+          }
+        });
       console.log(item)
 
       e.target.reset();
@@ -150,6 +153,7 @@ const AddNewItem = () => {
           </button>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };

@@ -60,13 +60,13 @@ const Registration = () => {
   };
 
   return (
-    <div className='w-[80%] mx-auto mt-10 mb-32 h-screen '>
+    <div className='lg:w-[80%] w-[90%] mx-auto my-10'>
       <form className='bg-white' onSubmit={registerUser}>
         <h4 className='pt-5 text-2xl font-medium block text-center'>
           Welcome to Perfumes Hut
         </h4>
-        <div className='grid grid-cols-2'>
-          <div className='p-10 '>
+        <div className='grid lg:grid-cols-2 grid-cols-1'>
+          <div className='lg:p-10 md:p-7 p-5 lg:order-1 order-2'>
             <div>
               <label
                 htmlFor='input-group-1'
@@ -203,7 +203,7 @@ const Registration = () => {
               </button>
             </div>
           </div>
-          <div>
+          <div className='order-1 lg:order-2 '>
             <img src={loginBg} alt='' />
           </div>
         </div>

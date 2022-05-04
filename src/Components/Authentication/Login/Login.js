@@ -1,11 +1,12 @@
 import { faEnvelope, faKey } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import React, { useState } from 'react';
 import {
   useAuthState,
   useSignInWithEmailAndPassword,
-  useSignInWithGoogle
+  useSignInWithGoogle,
 } from 'react-firebase-hooks/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
@@ -45,9 +46,20 @@ const Login = () => {
   const loginWithGoogle = () => {
     signInWithGoogle();
   };
-  const loginUser = (e) => {
+  const loginUser = async (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(email, password);
+    await signInWithEmailAndPassword(email, password);
+    fetch(`https://sheltered-bastion-67111.herokuapp.com/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
 
   // if (loading ) {
@@ -62,28 +74,30 @@ const Login = () => {
   //   });
   // }
 
-  const sendResetPass = () =>{
-    setModalActive(true)
-  }
-  const resetPassword = (e) =>{
-      e.preventDefault()
-      const email = (e.target.email.value);
-      if(email){
-        sendPasswordResetEmail(auth,email)
-        setModalActive(false);
-        toast.success("Check your email for reset password")
-      }
-  }
+  const sendResetPass = () => {
+    setModalActive(true);
+  };
+  const resetPassword = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    if (email) {
+      sendPasswordResetEmail(auth, email);
+      setModalActive(false);
+      toast.success('Check your email for reset password');
+    }
+  };
+
+
   return (
     <div className='pb-10'>
-      <div className='w-[80%] mx-auto   my-10 '>
+      <div className='lg:w-[80%] w-[90%] mx-auto   my-10 '>
         <div className='bg-white'>
           <form className='relative' onSubmit={loginUser}>
             <h4 className='pt-5 text-2xl font-medium block text-center'>
               Welcome to Perfumes Hut
             </h4>
-            <div className='grid grid-cols-2 '>
-              <div className='p-10 relative'>
+            <div className='grid lg:grid-cols-2 grid-cols-1 '>
+              <div className='lg:p-10 md:p-7 p-5 relative lg:order-1 order-2 '>
                 <div>
                   <label
                     htmlFor='input-group-1'
@@ -158,16 +172,15 @@ const Login = () => {
                   <p className='text-red-500'>
                     {error?.message || error1?.message}
                   </p>
-                 {
-                   loading ? 
+                  {loading ? (
                     <img
-                    className={`absolute w-10 top-[230px] left-[50%]`}
-                    src={loader}
-                    alt=''
-                  />
-                  :
-                  ""
-                 }
+                      className={`absolute w-10 top-[230px] left-[50%]`}
+                      src={loader}
+                      alt=''
+                    />
+                  ) : (
+                    ''
+                  )}
                 </div>
                 <button
                   type='submit'
@@ -203,7 +216,7 @@ const Login = () => {
                   </button>
                 </div>
               </div>
-              <div>
+              <div className='order-1 lg:order-2 '>
                 <img src={loginBg} alt='' />
               </div>
             </div>
