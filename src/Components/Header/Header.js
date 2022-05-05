@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import webLogo from '../../img/web-logo.png';
 import CustomLink from '../CustomLink/CustomLink';
 const Header = () => {
   const navigate = useNavigate();
@@ -25,12 +26,16 @@ const Header = () => {
     <nav className='h-full py-3  mb-auto bg-white  lg:flex items-center'>
       <div className='w-[85%] mx-auto lg:flex justify-between items-center'>
         <div className='lg:flex items-center justify-center'>
-          <div>
-            <h4 className='text-2xl  font-medium '>Perfume Hut</h4>
+          <div onClick={() => navigate('/')}>
+            <img
+              className='w-[230px] cursor-pointer object-cover '
+              src={webLogo}
+              alt=''
+            />
           </div>
           <div className={`${active ? 'hidden' : 'block'} lg:block`}>
             <ul className='lg:flex mt-5 lg:mt-0 lg:ml-10 items-center justify-center'>
-              <li className='lg:mx-5  text-base mb-2 lg:mb-0 font-medium'>
+              <li className='lg:mx-5 ml-0 text-base mb-2 lg:mb-0 font-medium'>
                 <CustomLink to='/'>Home</CustomLink>
               </li>
               <li className='lg:mx-5  text-base mb-2 lg:mb-0 font-medium'>
@@ -87,7 +92,7 @@ const Header = () => {
       </div>
       <div
         onClick={() => setActive(!active)}
-        className='absolute top-2 text-2xl border-[1px] cursor-pointer  px-2 lg:invisible  right-5'
+        className='absolute top-5 text-2xl border-[1px] cursor-pointer  px-2 lg:invisible  right-5'
       >
         <FontAwesomeIcon icon={faBars} />
       </div>

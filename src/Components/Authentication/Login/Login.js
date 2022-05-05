@@ -1,12 +1,11 @@
 import { faEnvelope, faKey } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import axios from 'axios';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import React, { useState } from 'react';
 import {
   useAuthState,
   useSignInWithEmailAndPassword,
-  useSignInWithGoogle,
+  useSignInWithGoogle
 } from 'react-firebase-hooks/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
@@ -49,7 +48,7 @@ const Login = () => {
   const loginUser = async (e) => {
     e.preventDefault();
     await signInWithEmailAndPassword(email, password);
-    fetch(`https://sheltered-bastion-67111.herokuapp.com/login`, {
+    await fetch(`https://sheltered-bastion-67111.herokuapp.com/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -58,8 +57,10 @@ const Login = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        localStorage.setItem('jwtToken', data.accessToken);
       });
+
+      // navigate(from, { replace: true });
   };
 
   // if (loading ) {
@@ -86,7 +87,6 @@ const Login = () => {
       toast.success('Check your email for reset password');
     }
   };
-
 
   return (
     <div className='pb-10'>
