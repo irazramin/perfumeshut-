@@ -35,11 +35,11 @@ const AddNewItem = () => {
         .then((data) => {
           if (data.acknowledged === true) {
             toast.success('Product add successfully');
+            e.target.reset();
           }
         });
       console.log(item)
 
-      e.target.reset();
   }
   return (
     <div className=' pt-10 pb-20 bg-stone-50 transition-all duration-500 ease-linear '>

@@ -259,12 +259,21 @@ const Login = () => {
                         />
                       </div>
                     </div>
-                    <button
-                      type='submit'
-                      className='bg-black w-full mt-5 mx-1 text-white px-4 py-2 hover:border-2 hover:border-black hover:bg-white hover:text-black border-2 border-black'
-                    >
-                      Password reset
-                    </button>
+                    <div className='flex'>
+                      <button
+                        type='submit'
+                        className='bg-black w-full mt-5 mx-1 text-white px-4 py-2 hover:border-2 hover:border-black hover:bg-white hover:text-black border-2 border-black'
+                      >
+                        Password reset
+                      </button>
+                      <button
+                      onClick={() => setModalActive(false)}
+                        type='button'
+                        className='bg-black w-full mt-5 mx-1 text-white px-4 py-2 hover:border-2 hover:border-black hover:bg-white hover:text-black border-2 border-black'
+                      >
+                        cancel
+                      </button>
+                    </div>
                   </form>
                 </div>
               </div>

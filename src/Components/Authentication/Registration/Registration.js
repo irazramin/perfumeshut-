@@ -18,6 +18,8 @@ import loginBg from '../../../img/signup.svg';
 const Registration = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [cPassword, setCPassword] = useState('');
+  const [cusError, setCusError] = useState('');
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   const [signInWithGoogle, user2, loading1, error1] = useSignInWithGoogle(auth);
@@ -25,7 +27,6 @@ const Registration = () => {
   const [currentUser] = useAuthState(auth);
   const [sendEmailVerification, sending, error2] =
     useSendEmailVerification(auth);
-  // const [showToast,setShowToast] = useState(false)
   if (currentUser) {
     navigate('/');
   }
@@ -41,12 +42,19 @@ const Registration = () => {
     setPassword(e.target.value);
   };
 
+  const handleConfirmPassword = e =>{
+    setCPassword(e.target.value)
+  }
   const registerUser = (e) => {
     e.preventDefault();
-    createUserWithEmailAndPassword(email, password).then(() => {
-      verifyRegisterUser();
-      toast.success('send verification code to your email')
-    });
+   if(password === cPassword) {
+      createUserWithEmailAndPassword(email, password).then(() => {
+        verifyRegisterUser();
+        toast.success('send verification code to your email');
+      });
+   }else{
+     setCusError('password not matched')
+   }
   };
   
  
@@ -145,6 +153,7 @@ const Registration = () => {
                   <FontAwesomeIcon icon={faKey} />
                 </div>
                 <input
+                onBlur={handleConfirmPassword}
                   type='password'
                   id='input-group-1'
                   className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-black focus:border-black block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:border-black'
@@ -156,7 +165,7 @@ const Registration = () => {
 
             <div className='relative'>
               <p className='text-red-500'>
-                {error?.message || error1?.message || error2?.message}
+                {error?.message || error1?.message || error2?.message || cusError}
               </p>
 
               {loading ? (
