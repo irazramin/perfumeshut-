@@ -11,9 +11,15 @@ const Aboutus = () => {
       <div className='grid lg:grid-cols-5 grid-cols-1  p-10 '>
         <div className='col-span-2 order-2 lg:order-1 flex flex-col justify-center'>
           <h3 className='font-semibold text-2xl'>About us</h3>
+
           <p className='mt-5'>
-            Welcome to the distributor's distributor. We are the one's
-            that you have been looking for.
+            perfumeshut is a Professional warehouse Platform. Here we will
+            provide you only interesting product, which you will like very much.
+            We're dedicated to providing you the best of perfumes, with a focus
+            on dependability and selling. We hope you enjoy our
+            perfumes as much as we enjoy offering them to you.I will keep
+            posting more important posts on my Website for all of you. Please
+            give your support and love.
           </p>
           <div className='mt-10 '>
             <button
