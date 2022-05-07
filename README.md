@@ -24,5 +24,6 @@ Visit my [website](https://warehouse-client-side.web.app/).
 - Node JS
 - React router dom
 - React firebase hooks
+- React Responsive Carousel
 
 ###### Thank you
